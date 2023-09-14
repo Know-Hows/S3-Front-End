@@ -6,9 +6,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateArticleComponent = () => {
-    const [articles] = useState([])
 
-    async function CreateArticle () {
+    async function PostArticle () {
         let articleName = document.getElementById('makearticlenames').value;
         console.log("getting new article name");
 
@@ -28,6 +27,7 @@ const CreateArticleComponent = () => {
                 if(response.id !== null) {
                     console.log("Succesfully created a article");
                     toastMessage("Succes", "Succesfully created a game.");
+                    SetArticleList(articleName);
                 } else {
                     console.log("Failed to create a game");
                 }
@@ -40,7 +40,6 @@ const CreateArticleComponent = () => {
     function AddArticle() {
         console.log("AddArticle");
         let newArticle=document.getElementById('makearticlenames').value;
-        articles.push(newArticle);
         SetArticleList(newArticle);
     }
 
@@ -97,13 +96,13 @@ const CreateArticleComponent = () => {
     return (
         <>
             <div>            
-                <div className="btn btn-info" onClick={CreateArticle}>Make articles</div>
+                <div className="btn btn-info" onClick={PostArticle}>Make articles</div>
             </div>
 
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Make article names</span>
                 <input id='makearticlenames' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-                <button onClick={AddPlayer} className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+                <button onClick={AddArticle} className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
             </div>
 
             <div className="container">

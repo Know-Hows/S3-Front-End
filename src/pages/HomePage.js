@@ -8,8 +8,8 @@ const HomePage = () => {
     return (
         <>
             <li className="nav-item p-3 fs-5">
-                <Link to="/NewGame">
-                    <p className="h5">New Game</p>
+                <Link to="/CreateArticle">
+                    <p className="h5">New article</p>
                 </Link>
             </li>
         </>
