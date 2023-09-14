@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { CreateArticle } from "../services/ArticleService";
+import React, { useState, useEffect } from "react";
+import { CreateArticle, GetAllArticles } from "../services/ArticleService";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CreateArticleComponent = () => {
+const CreateArticleComponent = (props) => {
 
     async function PostArticle () {
         let articleName = document.getElementById('makearticlenames').value;
@@ -37,15 +37,25 @@ const CreateArticleComponent = () => {
         }
     }
 
-    function AddArticle() {
-        console.log("AddArticle");
-        let newArticle=document.getElementById('makearticlenames').value;
-        SetArticleList(newArticle);
+    function SetArticleList(Articles) {
+        Articles.forEach(element => {
+            console.log(element)
+
+            let articleTitle = element.title
+
+            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';
+            console.log("New article name: ", articleTitle);            
+        });        
     }
 
-    function SetArticleList(newArticle) {
-        document.getElementById('articleList').innerHTML += '<tr><td>' + newArticle + '</td></tr>';
-        console.log("New article name: ", newArticle);
+    async function GetAllArticleTitles() {
+        console.log("Get article titles")
+        var articleTitles = []
+        await GetAllArticles().then((response) => {
+            articleTitles = response
+            console.log(articleTitles)
+        }) 
+        return articleTitles;
     }
 
     function ChangeMessage(typeMessage){
@@ -102,7 +112,6 @@ const CreateArticleComponent = () => {
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Make article names</span>
                 <input id='makearticlenames' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
-                <button onClick={AddArticle} className="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
             </div>
 
             <div className="container">
@@ -113,8 +122,8 @@ const CreateArticleComponent = () => {
                         <th>Articles</th>
                     </tr>
                 </thead>
-                <tbody id="articleList">
-                
+                <tbody  id="articleList">
+                    {SetArticleList(props.articles)}
                 </tbody>
                 </table>
             </div>

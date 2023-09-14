@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function getAllArticles(){
+export async function GetAllArticles(){
     try {
         console.log("service getAllArticles");
         const response = await axios.get(
