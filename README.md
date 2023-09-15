@@ -1,3 +1,24 @@
+# KnowHows Front-end 
+This is the front-end project for LM and JS S3 at Fontys Hoge Scholen.
+
+This project is made with Javascript library React.
+
+To go to the portfolio you can click [here](https://github.com/Know-Hows/S3-Portfolio).
+
+## Reading guide
+- [Documentation](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs)
+    - [Packages](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs/Packages.md)
+    - [Code documentation](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs/Code)
+        - [Components](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs/Code/Components.md)
+        - [pages](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs/Code/Pages.md)
+        - [Serices](https://github.com/Know-Hows/S3-Front-End/blob/main/Docs/Code/Services.md)
+- [Code](https://github.com/Know-Hows/S3-Front-End/blob/main/src)
+    - [Components](https://github.com/Know-Hows/S3-Front-End/blob/main/src/components)
+    - [Pages](https://github.com/Know-Hows/S3-Front-End/blob/main/src/pages)
+    - [services](https://github.com/Know-Hows/S3-Front-End/blob/main/src/services)
+
+-----------------------------------------------------------------------------------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
