@@ -35,7 +35,7 @@ const CreateArticleComponent = () => {
                 if(response.id !== null) {
                     console.log("Succesfully created a article");
                     toastMessage("Succes", "Succesfully created a game.");
-                    SetArticleList(articleName);
+                    GetAllArticleTitles();
                 } else {
                     console.log("Failed to create a game");
                 }
@@ -46,6 +46,7 @@ const CreateArticleComponent = () => {
     }
 
     function SetArticleList(Articles) {
+        document.getElementById('articleList').innerHTML = ""
         Articles.forEach(element => {
             console.log(element)
 
