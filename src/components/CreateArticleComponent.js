@@ -5,7 +5,15 @@ import "bootstrap/dist/js/bootstrap";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const CreateArticleComponent = (props) => {
+const CreateArticleComponent = () => {
+    const [articles, setArticles] = useState(null);
+
+    useEffect(() => {
+        async function AsignValue() {          
+          setArticles(await GetAllArticleTitles());
+        }
+        AsignValue();
+    }, []);
 
     async function PostArticle () {
         let articleName = document.getElementById('makearticlenames').value;
@@ -54,6 +62,7 @@ const CreateArticleComponent = (props) => {
         await GetAllArticles().then((response) => {
             articleTitles = response
             console.log(articleTitles)
+            SetArticleList(articleTitles);
         }) 
         return articleTitles;
     }
@@ -123,7 +132,6 @@ const CreateArticleComponent = (props) => {
                     </tr>
                 </thead>
                 <tbody  id="articleList">
-                    {SetArticleList(props.articles)}
                 </tbody>
                 </table>
             </div>
