@@ -17,8 +17,6 @@ const CreateArticleComponent = () => {
 
     async function PostArticle () {
         let articleName = document.getElementById('makearticlenames').value;
-        console.log("getting new article name");
-
         if(articleName <= 0) {
             console.log("article name can't be empty")
             ChangeMessage(2);
@@ -52,13 +50,11 @@ const CreateArticleComponent = () => {
 
             let articleTitle = element.title
 
-            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';
-            console.log("New article name: ", articleTitle);            
+            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';       
         });        
     }
 
     async function GetAllArticleTitles() {
-        console.log("Get article titles")
         var articleTitles = []
         await GetAllArticles().then((response) => {
             articleTitles = response
@@ -115,13 +111,13 @@ const CreateArticleComponent = () => {
 
     return (
         <>
-            <div>            
-                <div className="btn btn-info" onClick={PostArticle}>Make articles</div>
-            </div>
-
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Make article names</span>
                 <input id='makearticlenames' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+            </div>
+
+            <div>            
+                <div className="btn btn-info" onClick={PostArticle}>Make articles</div>
             </div>
 
             <div className="container">
