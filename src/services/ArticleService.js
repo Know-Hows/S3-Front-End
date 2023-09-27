@@ -1,10 +1,11 @@
 import axios from "axios";
+const api = 'https://localhost:7119/api';
 
 export async function GetAllArticles(){
     try {
         console.log("service getAllArticles");
-        const response = await axios.get(
-            "https://localhost:7119/api/Article");
+        const response = await axios.get(`${api}/Article`
+            );
         console.log("response", response);
         return response.data;
     } catch (error) {
@@ -15,7 +16,7 @@ export async function GetAllArticles(){
 export async function CreateArticle(data){
     try {
         console.log(data);
-        const response = axios.post('https://localhost:7119/api/Article', data)
+        const response = axios.post(`${api}/Article`, data)
         .catch(function (error) {
             if (error.response) {
                 // Request made and server responded
