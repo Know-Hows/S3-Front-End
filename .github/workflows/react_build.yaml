@@ -73,7 +73,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\sonar-scanner-5.0.1.3006-windows\bin\sonar-scanner.bat begin /Dsonar.projectKey:Know-Hows_S3-Front-End /Dsonar.organization:know-hows /Dsonar.login="${{ secrets.SONAR_TOKEN }}" /Dsonar.host.url=https://sonarcloud.io /Dsonar.sources="knowhows"
+          .\.sonar\scanner\sonar-scanner-5.0.1.3006-windows\bin\sonar-scanner.bat begin /-Dsonar.projectKey:Know-Hows_S3-Front-End /-Dsonar.organization:know-hows /-Dsonar.login="${{ secrets.SONAR_TOKEN }}" /-Dsonar.host.url=https://sonarcloud.io /-Dsonar.sources="knowhows"
           npm install
           npm test
           npm run build
