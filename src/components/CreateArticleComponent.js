@@ -45,12 +45,14 @@ const CreateArticleComponent = () => {
 
     function SetArticleList(Articles) {
         document.getElementById('articleList').innerHTML = ""
+        console.log(Articles)
         Articles.forEach(element => {
             console.log(element)
 
             let articleTitle = element.title
 
-            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';       
+            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';
+            console.log(document.getElementById('articleList'));
         });        
     }
 
@@ -58,10 +60,8 @@ const CreateArticleComponent = () => {
         var articleTitles = []
         await GetAllArticles().then((response) => {
             articleTitles = response
-            console.log(articleTitles)
             SetArticleList(articleTitles);
-        }) 
-        return articleTitles;
+        });
     }
 
     function ChangeMessage(typeMessage){
@@ -113,22 +113,22 @@ const CreateArticleComponent = () => {
         <>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Make article names</span>
-                <input id='makearticlenames' type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                <input id='makearticlenames' data-testid="CAC-MakeArticleNames" type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
             </div>
 
             <div>            
-                <div className="btn btn-info" onClick={PostArticle}>Make articles</div>
+                <div className="btn btn-info" data-testid='CAC-MakeArticleButton' onClick={PostArticle}>Make articles</div>
             </div>
 
             <div className="container">
-                <h3 className="p-3 text-center">Article Names</h3>
+                <h3 className="p-3 text-center"  data-testid="CAC-ArticleNames">Article Names</h3>
                 <table className="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th>Articles</th>
                     </tr>
                 </thead>
-                <tbody  id="articleList">
+                <tbody  id="articleList" data-testid="CAC-ArticleList">
                 </tbody>
                 </table>
             </div>
