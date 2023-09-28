@@ -37,7 +37,7 @@ const CreateArticleComponent = () => {
             Body: articleBody
         };
 
-        console.log("New article: ", articleBody);
+        // console.log("New article: ", articleBody);
 
         try {
             await CreateArticle(articlebody).then((response) => {
