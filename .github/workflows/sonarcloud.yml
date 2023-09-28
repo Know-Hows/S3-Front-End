@@ -58,7 +58,7 @@ jobs:
             # mandatory
             -Dsonar.projectKey=Know-Hows_S3-Front-End
             -Dsonar.organization=know-hows
-            -Dsonar.sources=knowhows
+            #-Dsonar.sources=knowhows
             # When you need the analysis to take place in a directory other than the one from which it was launched
             #-Dsonar.projectBaseDir= # optional, default is .
             # Comma-separated paths to directories containing test source files.
