@@ -3,8 +3,11 @@ on:
   push:
     branches:
       - main
+      - Dev
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - Dev
 jobs:
   sonarcloud:
     name: SonarCloud
