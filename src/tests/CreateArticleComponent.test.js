@@ -1,7 +1,7 @@
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import CreateArticleComponent, { PostArticle } from '../components/CreateArticleComponent'
 
-test('Should render CreateArticleComponent', () => {
+test('Should render CreateArticleComponent', async () => {
     render(<CreateArticleComponent/>);
     const elementCAC = screen.getByTestId('CAC-ArticleNames')
     expect(elementCAC).toBeInTheDocument();
@@ -10,7 +10,7 @@ test('Should render CreateArticleComponent', () => {
 
 test('Should create article with title from input after pressing make article button', async () => {
     const PostArticleMock = jest.fn();
-    render(<CreateArticleComponent PostArticle={PostArticleMock}/>);
+    await render(<CreateArticleComponent PostArticle={PostArticleMock}/>);
     const attribute = 'Apples';
     const inputElement = screen.getByTestId('CAC-MakeArticleNames');
     const buttonElement = screen.getByTestId('CAC-MakeArticleButton');

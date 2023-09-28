@@ -15,7 +15,6 @@ export async function GetAllArticles(){
 
 export async function CreateArticle(data){
     try {
-        console.log(data);
         const response = axios.post(`${api}/Article`, data)
         .catch(function (error) {
             if (error.response) {
