@@ -22,7 +22,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:latest" .
-          docker tag "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:latest" "${{ secrets.DOCKER_USERNAME }}/knowhows-backend:${{ github.sha }}"
+          docker tag "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:latest" "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:${{ github.sha }}"
           docker push "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:latest"
           docker push "${{ secrets.DOCKER_USERNAME }}/knowhows-frontend:${{ github.sha }}"
         env:
