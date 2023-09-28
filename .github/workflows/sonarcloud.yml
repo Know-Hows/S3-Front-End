@@ -9,12 +9,12 @@ on:
       - main
       - Dev
 jobs:
-  buildReactNative:
+  buildReactJS:
   
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest, macOS-latest]
+        os: [windows-latest]
 
     steps:
     - uses: actions/checkout@v3
