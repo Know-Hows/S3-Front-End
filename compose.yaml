@@ -1,0 +1,5 @@
+services:
+  web:
+    image: "jschuurmans03/knowhows-frontend"
+  service:
+    image: "espilonius/knowhows-backend:latest"
