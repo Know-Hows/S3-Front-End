@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateArticleComponent = () => {
     const [articles, setArticles] = useState(null);
+    var htmlArticleList;
+    var htmlMakeArticleName;
+    var htmlMakeArticleBody;
 
     useEffect(() => {
         async function AsignValue() {          
@@ -14,10 +17,15 @@ const CreateArticleComponent = () => {
         }
         AsignValue();
     }, []);
+    useEffect(() => {
+        htmlArticleList = document.getElementById('articleList');
+        htmlMakeArticleName = document.getElementById('makearticlenames');
+        htmlMakeArticleBody = document.getElementById('makearticlebody');
+    }, []);
 
     async function PostArticle () {
-        let articleName = document.getElementById('makearticlenames').value;
-        let articleBody = document.getElementById('makearticlebody').value;
+        let articleName = htmlMakeArticleName.value;
+        let articleBody = htmlMakeArticleBody.value;
         if(articleName <= 0) {
             console.log("article name can't be empty")
             ChangeMessage(2);
@@ -29,11 +37,10 @@ const CreateArticleComponent = () => {
             Body: articleBody
         };
 
-        console.log("New article: ", articleBody);
+        // console.log("New article: ", articleBody);
 
         try {
             await CreateArticle(articlebody).then((response) => {
-                console.log(response);
                 if(response.id !== null) {
                     console.log("Succesfully created a article");
                     toastMessage("Succes", "Succesfully created a game.");
@@ -43,20 +50,16 @@ const CreateArticleComponent = () => {
                 }
             });
         } catch (error) {
-            console.log("Error", error);
         }
     }
 
-    function SetArticleList(Articles) {
-        document.getElementById('articleList').innerHTML = ""
-        console.log(Articles)
+    async function SetArticleList(Articles) {
+        htmlArticleList.innerHTML = "Loading data"
         Articles.forEach(element => {
-            console.log(element)
 
             let articleTitle = element.title
 
-            document.getElementById('articleList').innerHTML += '<tr><td>' + articleTitle + '</td></tr>';
-            console.log(document.getElementById('articleList'));
+            htmlArticleList.innerHTML += '<tr><td>' + articleTitle + '</td></tr>';
         });        
     }
 
@@ -87,7 +90,7 @@ const CreateArticleComponent = () => {
           } 
       }
 
-    function toastMessage(type, message) {
+    async function toastMessage(type, message) {
         if (type === "error") {
           toast.error(message, {
             position: "top-right",
