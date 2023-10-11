@@ -1,5 +1,5 @@
 import axios from "axios";
-const api = 'https://localhost:7119/api';
+const api = 'http://localhost:7119/api';
 
 export async function GetAllArticles(){
     try {
