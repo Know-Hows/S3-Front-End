@@ -4,8 +4,10 @@ function Embed({ content }) {
   if (content.startsWith('http')) {
     if (content.match(/\.(jpg|jpeg|png|gif|bmp)$/)) {
       // Handle image links
-      const imageStyle = 'max-width: 60%; max-height: 30vh; height: auto; width: auto;';
-      return <img className="responsive-image" src={content} alt="Image" style={imageStyle} />;
+      const imageStyle = 'max-width: 60%; max-height; 30vh; height: auto; width: auto;';
+      return (
+        <img className="responsive-image" src={content} alt="Image" style={imageStyle} />
+      );
     } else if (content.includes('youtube.com/watch') || content.includes('youtu.be/')) {
       // Handle YouTube links
       const youtubeId = getYouTubeId(content);
