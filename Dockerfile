@@ -19,7 +19,7 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Expose the port on which the app will be running (3000 is the default that `serve` uses)
-EXPOSE 3000
+# Expose the port on which the app will be running (usually 80)
+EXPOSE 80
 
 CMD [ "npm", "start" ]
