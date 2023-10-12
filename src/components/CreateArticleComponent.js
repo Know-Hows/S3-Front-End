@@ -3,7 +3,6 @@ import { CreateArticle, GetAllArticles } from "../services/ArticleService";
 import TextToLinksConverter from "./EmbedComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateArticleComponent = () => {
@@ -29,7 +28,6 @@ const CreateArticleComponent = () => {
     let articleBody = htmlMakeArticleBody.value;
     if (articleName <= 0) {
       console.log("article name can't be empty");
-      ChangeMessage(2);
       return;
     }
 
@@ -42,7 +40,6 @@ const CreateArticleComponent = () => {
       await CreateArticle(articlebody).then((response) => {
         if (response.id !== null) {
           console.log("Succesfully created a article");
-          toastMessage("Succes", "Succesfully created a game.");
           GetAllArticleTitles();
         } else {
           console.log("Failed to create a game");
@@ -70,8 +67,6 @@ const CreateArticleComponent = () => {
       `;
     });
   };
-  
-  
 
   async function GetAllArticleTitles() {
     var articleTitles = [];
@@ -81,50 +76,6 @@ const CreateArticleComponent = () => {
     });
   }
 
-  function ChangeMessage(typeMessage) {
-    switch (typeMessage) {
-      case 0:
-        toastMessage("error", "Rounds can't be negative.");
-        break;
-      case 1:
-        toastMessage("error", "Rounds can't be over 10.");
-        break;
-      case 2:
-        toastMessage("error", "Players can't be less then 2.");
-        break;
-      case 3:
-        toastMessage("Succes", "Succesfully created a game.");
-        break;
-      default:
-        console.log("There isn't a switch case for this", typeMessage);
-    }
-  }
-
-  async function toastMessage(type, message) {
-    if (type === "error") {
-      toast.error(message, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } else {
-      toast.success(message, {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  }
   return (
     <>
       <div className="input-group mb-3">
