@@ -1,5 +1,5 @@
 import axios from "axios";
-const api = 'https://localhost:7119/api';
+const api = process.env.REACT_APP_SERVER_URL;
 
 export async function GetAllArticles(){
     try {
