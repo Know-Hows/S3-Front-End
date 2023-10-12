@@ -19,7 +19,7 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Expose the port on which the app will be running (usually 80)
-EXPOSE 80
+# Expose the port on which the app will be running
+EXPOSE 3000
 
 CMD [ "npm", "start" ]
