@@ -1,8 +1,5 @@
 FROM node:lts-alpine
 
-# install simple http server for serving static content
-RUN npm install -g http-server
-
 # Set the working directory to /app inside the container
 WORKDIR /app
 
@@ -12,6 +9,8 @@ COPY package*.json ./
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
 RUN npm install
 RUN npm ci
+
+ENV NODE_ENV production
 
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
