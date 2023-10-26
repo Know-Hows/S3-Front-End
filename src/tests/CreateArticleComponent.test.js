@@ -1,5 +1,5 @@
-import { render, screen, cleanup, fireEvent } from '@testing-library/react'
-import CreateArticleComponent, { PostArticle } from '../components/CreateArticleComponent'
+import { render, screen, fireEvent } from '@testing-library/react'
+import CreateArticleComponent from '../components/CreateArticleComponent'
 
 test('Should render CreateArticleComponent', async () => {
     render(<CreateArticleComponent/>);
