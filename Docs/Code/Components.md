@@ -7,7 +7,7 @@ The components in this project are used to mainly seperate code and to re-use co
 
 ## **Reading guide**
 - [Create Article component](#create-article-component)
-
+- [Embed Component](#embed-component)
 
 <br><br>
 
