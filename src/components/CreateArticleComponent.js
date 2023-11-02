@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CreateArticle, GetAllArticles } from "../services/ArticleService";
+import { createRoot } from "react-dom/client";
 import TextToLinksConverter from "./EmbedComponent";
+import LikesComponent from "./LikesComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "react-toastify/dist/ReactToastify.css";
@@ -49,9 +51,9 @@ const CreateArticleComponent = () => {
   }
 
   const SetArticleList = (Articles) => {
-    htmlArticleList.innerHTML = "Loading data";
+    const root = createRoot(document.getElementById("articleList"));
   
-    Articles.forEach(element => {
+    const articleRows = Articles.map((element) => {
       const articleTitle = element.title;
       let articleBody = element.body;
   
@@ -59,15 +61,20 @@ const CreateArticleComponent = () => {
         articleBody = TextToLinksConverter(articleBody);
       }
   
-      htmlArticleList.innerHTML += `
-        <tr>
-          <td>${articleTitle}</td>
-          <td>${articleBody || ''}</td>
+      const likesComponent = <LikesComponent articleId={element.id} />;
+  
+      return (
+        <tr key={element.id}>
+          <td>{articleTitle}</td>
+          <td dangerouslySetInnerHTML={{ __html: articleBody || "" }}></td>
+          <td>{likesComponent}</td>
         </tr>
-      `;
+      );
     });
+  
+    root.render(articleRows);
   };
-
+  
   async function GetAllArticleTitles() {
     var articleTitles = [];
     await GetAllArticles().then((response) => {
