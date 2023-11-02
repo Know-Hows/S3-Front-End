@@ -22,3 +22,13 @@ export async function CreateArticle(data){
         console.log(error);
     }
 }
+
+export async function UpdateLikes(id, likeCreditParam) {
+    try {
+      console.log(likeCreditParam)
+      const response = await axios.put(`${api}/Article/updateLikes/${id}?likeCredit=${likeCreditParam}`)
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
