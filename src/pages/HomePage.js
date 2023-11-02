@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import LoginButton from "../components/LoginButtonComponent";
+import Profile from "../components/ProfileComponent";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 
-const HomePage = () => {
+const HomePage = () => {    
     return (
         <>
             <li className="nav-item p-3 fs-5">
@@ -12,6 +14,12 @@ const HomePage = () => {
                     <p className="h5">New article</p>
                 </Link>
             </li>
+            <div>
+                <LoginButton/>
+            </div>
+            <div>
+                <Profile/>
+            </div>
         </>
     );
 }
