@@ -30,7 +30,7 @@ jobs:
     - name: Build
       run: npm run build
     - name: Run the tests
-      run: npm test
+      run: npm test -- --detectOpenHandles
 
   sonarcloud:
     name: SonarCloud
