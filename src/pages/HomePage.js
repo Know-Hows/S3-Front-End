@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoginButton from "../components/LoginButtonComponent";
+import LogoutButton from "../components/LogoutButtonComponent";
 import Profile from "../components/ProfileComponent";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -16,6 +17,9 @@ const HomePage = () => {
             </li>
             <div>
                 <LoginButton/>
+            </div>
+            <div>
+                <LogoutButton/>
             </div>
             <div>
                 <Profile/>

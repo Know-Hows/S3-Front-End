@@ -9,7 +9,7 @@ const Profile = () => {
   }
 
   return (
-    console.log(isAuthenticated),
+    console.log(user),
     isAuthenticated && (        
       <div>
         <img src={user.picture} alt={user.name} />
