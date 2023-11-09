@@ -36,7 +36,6 @@ const CreateArticleComponent = () => {
     };
       const response = await CreateArticle(articleBodyObject);
 
-      //Test
       if (response.id !== null) {
         console.log("Successfully created an article");
         GetAllArticleTitles();
