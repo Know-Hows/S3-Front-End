@@ -20,9 +20,14 @@ const CreateArticleComponent = () => {
     AsignValue();
   }, []);
   useEffect(() => {
-    htmlArticleList = document.getElementById("articleList");
-    htmlMakeArticleName = document.getElementById("makearticlenames");
-    htmlMakeArticleBody = document.getElementById("makearticlebody");
+    async function AsignValue() {
+      setArticles(await GetAllArticleTitles());
+      
+      htmlArticleList = document.getElementById("articleList");
+      htmlMakeArticleName = document.getElementById("makearticlenames");
+      htmlMakeArticleBody = document.getElementById("makearticlebody");
+    }
+    AsignValue();
   }, []);
 
   async function PostArticle() {
