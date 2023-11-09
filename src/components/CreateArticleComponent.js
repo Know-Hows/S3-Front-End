@@ -34,8 +34,6 @@ const CreateArticleComponent = () => {
       Title: articleName,
       Body: articleBody,
     };
-
-    try {
       const response = await CreateArticle(articleBodyObject);
 
       if (response.id !== null) {
@@ -44,9 +42,6 @@ const CreateArticleComponent = () => {
       } else {
         console.log("Failed to create an article");
       }
-    } catch (error) {
-      console.error("Error creating article:", error);
-    }
   }
 
   function SetArticleList() {
