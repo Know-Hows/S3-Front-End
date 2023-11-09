@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { CreateArticle, GetAllArticles } from "../services/ArticleService";
 import { createRoot } from "react-dom/client";
 import TextToLinksConverter from "./EmbedComponent";
@@ -8,26 +8,14 @@ import "bootstrap/dist/js/bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateArticleComponent = () => {
-  const [articles, setArticles] = useState(null);
-  var htmlArticleList;
-  var htmlMakeArticleName;
-  var htmlMakeArticleBody;
+  useEffect(() => {
+    GetAllArticleTitles();
+  }, []);
 
-  useEffect(() => {
-    async function AsignValue() {
-      setArticles(await GetAllArticleTitles());
-    }
-    AsignValue();
-  }, []);
-  useEffect(() => {
-    htmlArticleList = document.getElementById("articleList");
-    htmlMakeArticleName = document.getElementById("makearticlenames");
-    htmlMakeArticleBody = document.getElementById("makearticlebody");
-  }, []);
 
   async function PostArticle() {
-    let articleName = htmlMakeArticleName.value;
-    let articleBody = htmlMakeArticleBody.value;
+    let articleName = document.getElementById("makearticlenames").value;
+    let articleBody = document.getElementById("makearticlebody").value;
     if (articleName <= 0) {
       console.log("article name can't be empty");
       return;
