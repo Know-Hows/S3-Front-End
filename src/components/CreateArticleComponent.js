@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CreateArticle, GetAllArticles } from "../services/ArticleService";
-import { createRoot } from "react-dom/client";
 import TextToLinksConverter from "./EmbedComponent";
 import LikesComponent from "./LikesComponent";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,49 +7,54 @@ import "bootstrap/dist/js/bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
 const CreateArticleComponent = () => {
+  const [articleTitles, setArticleTitles] = useState([]);
+
   useEffect(() => {
     GetAllArticleTitles();
   }, []);
 
-
   async function PostArticle() {
-    let articleName = document.getElementById("makearticlenames").value;
-    let articleBody = document.getElementById("makearticlebody").value;
-    if (articleName <= 0) {
-      console.log("article name can't be empty");
+    const articleNameInput = document.getElementById("makearticlenames");
+    const articleBodyInput = document.getElementById("makearticlebody");
+
+    if (!articleNameInput || !articleBodyInput) {
+      console.log("Article name or body input not found");
       return;
     }
 
-    let articlebody = {
+    const articleName = articleNameInput.value;
+    const articleBody = articleBodyInput.value;
+
+    if (articleName <= 0) {
+      console.log("Article name can't be empty");
+      return;
+    }
+
+    const articleBodyObject = {
       Title: articleName,
       Body: articleBody,
     };
+      const response = await CreateArticle(articleBodyObject);
 
-    try {
-      await CreateArticle(articlebody).then((response) => {
-        if (response.id !== null) {
-          console.log("Succesfully created a article");
-          GetAllArticleTitles();
-        } else {
-          console.log("Failed to create a game");
-        }
-      });
-    } catch (error) {}
+      if (response.id !== null) {
+        console.log("Successfully created an article");
+        GetAllArticleTitles();
+      } else {
+        console.log("Failed to create an article");
+      }
   }
 
-  const SetArticleList = (Articles) => {
-    const root = createRoot(document.getElementById("articleList"));
-  
-    const articleRows = Articles.map((element) => {
+  function SetArticleList() {
+    return articleTitles.map((element) => {
       const articleTitle = element.title;
       let articleBody = element.body;
-  
+
       if (articleBody) {
         articleBody = TextToLinksConverter(articleBody);
       }
-  
+
       const likesComponent = <LikesComponent articleId={element.id} />;
-  
+
       return (
         <tr key={element.id}>
           <td>{articleTitle}</td>
@@ -59,17 +63,17 @@ const CreateArticleComponent = () => {
         </tr>
       );
     });
-  
-    root.render(articleRows);
-  };
-  
-  async function GetAllArticleTitles() {
-    var articleTitles = [];
-    await GetAllArticles().then((response) => {
-      articleTitles = response;
-      SetArticleList(articleTitles);
-    });
   }
+
+  async function GetAllArticleTitles() {
+    try {
+      const response = await GetAllArticles();
+      setArticleTitles(response);
+    } catch (error) {
+      console.error("Error getting article titles:", error);
+    }
+  }
+
 
   return (
     <>
@@ -119,7 +123,9 @@ const CreateArticleComponent = () => {
               <th>Articles</th>
             </tr>
           </thead>
-          <tbody id="articleList" data-testid="CAC-ArticleList"></tbody>
+          <tbody id="articleList" data-testid="CAC-ArticleList">
+            {SetArticleList()}
+          </tbody>
         </table>
       </div>
     </>

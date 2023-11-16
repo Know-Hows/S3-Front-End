@@ -24,13 +24,13 @@ jobs:
     - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 19.9.0
     - name: Install dependencies
       run: npm install
-    - name: Run the tests
-      run: npm test -- --detectOpenHandles
-    - name: Build
+    - name: Buildnp
       run: npm run build
+    - name: Run the tests
+      run: npm test
 
   sonarcloud:
     name: SonarCloud
@@ -38,7 +38,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
       - name: Install dependencies
         run: npm install
       - name: Test and coverage
@@ -46,5 +46,5 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
