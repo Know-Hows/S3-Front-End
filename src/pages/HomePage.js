@@ -11,7 +11,7 @@ import "bootstrap/dist/js/bootstrap";
 
 const HomePage = () => {    
     return (
-        <>
+        <div >
             <li className="nav-item p-3 fs-5">
                 <Link to="/CreateArticle">
                     <p className="h5">New article</p>
@@ -29,7 +29,7 @@ const HomePage = () => {
             <div>
                 <button onClick={GetToken}></button>
             </div>
-        </>
+        </div>
     );
 }
 

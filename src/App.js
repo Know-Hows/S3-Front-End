@@ -4,8 +4,8 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import CreateArticlePage from './pages/CreateArticlePage';
 
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap";
+// import "bootstrap/dist/css/bootstrap.min.css"
+// import "bootstrap/dist/js/bootstrap";
 
 function App() {
   return (
