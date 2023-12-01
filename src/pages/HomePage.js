@@ -13,8 +13,8 @@ const HomePage = () => {
     return (
         <div >
             <li className="nav-item p-3 fs-5">
-                <Link to="/CreateArticle">
-                    <p className="h5">New article</p>
+                <Link to="/ArticlePage">
+                    <p className="h5">See all articles!</p>
                 </Link>
             </li>
             <div>
