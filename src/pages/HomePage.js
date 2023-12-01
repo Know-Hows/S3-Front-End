@@ -57,7 +57,7 @@ const HomePage = () => {
                     <PostingSkillsCard  />
                     <MakingMoneyCard onImageLoad={() => setIsLoading4(false)} />
                 </div>
-                <div className="flex gap-6 flex-wrap justify-center">
+                <div className="flex gap-6 flex-wrap justify-center mt-6">
                     {isLoading4 ? <LoadingCard /> : <LearningSkillsCard onImageLoad={() => setIsLoading4(false)} />}
                     {isLoading4 ? <LoadingCard /> : <PostingSkillsCard onImageLoad={() => setIsLoading4(false)} />}
                     {isLoading4 ? <LoadingCard /> : <MakingMoneyCard onImageLoad={() => setIsLoading4(false)} />}

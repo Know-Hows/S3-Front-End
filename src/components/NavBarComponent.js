@@ -125,7 +125,7 @@ const NavBar = () => {
                     Welcome back, {user.nickname || "User"}!
                 </div>
             )}
-            <div className="fixed top-0 z-50 w-full bg-gray-300" style={{ height: '5px', width: `${scrollProgress * 100}%` }}></div>
+            <div className="transition-all duration-500 ease-in-out fixed top-0 z-50 w-full bg-gray-300" style={{ height: '5px', width: `${scrollProgress * 100}%` }}></div>
 
         </div>
 
