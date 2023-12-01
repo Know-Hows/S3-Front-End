@@ -12,7 +12,15 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.slide-in {
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
+}
 
+.slide-out {
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
