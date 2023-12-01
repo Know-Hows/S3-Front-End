@@ -14,23 +14,6 @@ const HomePage = () => {
     return (
         <div >
             <Navbar/>
-            <li className="nav-item p-3 fs-5">
-                <Link to="/CreateArticle">
-                    <p className="h5">New article</p>
-                </Link>
-            </li>
-            <div>
-                <LoginButton/>
-            </div>
-            <div>
-                <LogoutButton/>
-            </div>
-            <div>
-                <Profile/>
-            </div>
-            <div>
-                <button onClick={GetToken}></button>
-            </div>
         </div>
     );
 }
