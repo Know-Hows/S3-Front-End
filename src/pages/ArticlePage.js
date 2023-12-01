@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import AllArticlesComponent from "../components/AllArticlesComponent";
+import NavBar from "../components/NavBarComponent";
+import Sidebar from "../components/SideBarComponent";
 
 const CreateArticlePage = () => {
     const navigate = useNavigate();
@@ -14,6 +16,8 @@ const CreateArticlePage = () => {
 
     return(
         <>
+        <NavBar/>
+        <Sidebar />
             <div className="btn btn-primary" onClick={GoToHome}>
                 Go home
             </div>
@@ -21,9 +25,9 @@ const CreateArticlePage = () => {
                 Create an article
             </div>
 
-            <div>
+            
                 <AllArticlesComponent></AllArticlesComponent>
-            </div>
+            
         </>
     )
 }

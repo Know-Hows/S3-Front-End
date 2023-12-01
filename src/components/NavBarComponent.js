@@ -31,7 +31,7 @@ const NavBar = () => {
         prevAuthState.current = isAuthenticated;
     }, [isAuthenticated]);
     return (
-      <div className="sticky h-16 bg-deepBlue flex flex-row justify-between items-center">
+      <div className="sticky top-0 h-16 bg-deepBlue flex flex-row justify-between items-center">
         <div className="flex flex-row items-center gap-2 pr-4">
           <Link to="/" data-testid="ImageToWelcomePage">
             <img
