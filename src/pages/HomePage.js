@@ -20,8 +20,6 @@ const HomePage = () => {
             setIsLoading4(false);
           }, 500); 
     }, []);
-        
-
 
     return (
         <div className="flex flex-col min-h-screen">

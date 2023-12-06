@@ -15,6 +15,7 @@ const NavBar = () => {
     const prevAuthState = useRef(isAuthenticated);
 
     useEffect(() => {
+        
         if (isAuthenticated && !prevAuthState.current) {
 
             setShowAlert(true);
@@ -43,6 +44,7 @@ const NavBar = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
+        
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -53,7 +55,6 @@ const NavBar = () => {
             const totalScroll = document.documentElement.scrollTop;
             const windowHeight = document.documentElement.clientHeight;
 
-            // Check if scrolled more than one screen length
             if (totalScroll > windowHeight) {
                 setIsTransparent(true);
             } else {
@@ -68,7 +69,7 @@ const NavBar = () => {
 
     return (
 
-        <div className={`sticky top-0 h-16 z-50 flex flex-row justify-between items-center shadow-2xl shadow-black ${isTransparent ? 'bg-gradient-to-b from-deepBlue to-transparent shadow-none' : 'bg-deepBlue shadow-2xl shadow-black text-white'}`}>
+        <div className={`sticky top-0 h-20 z-50 flex flex-row justify-between items-center shadow-2xl shadow-black ${isTransparent ? 'bg-gradient-to-b from-deepBlue to-transparent shadow-none' : 'bg-deepBlue shadow-2xl shadow-black text-white'}`}>
             <div className="flex flex-row items-center gap-2 pr-4">
                 <Link to="/" data-testid="ImageToWelcomePage">
                     <img
