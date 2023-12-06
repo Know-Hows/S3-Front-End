@@ -23,11 +23,20 @@ const AllArticlesComponent = () => {
       const likesComponent = <LikesComponent articleId={element.id} />;
 
       return (
-        <tr key={element.id}>
-          <td>{articleTitle}</td>
-          <td dangerouslySetInnerHTML={{ __html: articleBody || "" }}></td>
-          <td>{likesComponent}</td>
-        </tr>
+        <div key={element.id} className="w-full p-4 h-full ml-32">
+          <div className="bg-lightBlue text-white rounded-xl overflow-hidden h-full">
+            <div>
+              <div className="md:flex-shrink-0">
+                {/* Add any image or icon for the article if needed */}
+                {/* <img className="h-48 w-full object-cover md:w-48" src="article-image.jpg" alt="Article" /> */}
+              </div>
+              <div className="p-8">
+                <div className="uppercase tracking-wide text-sm text-white font-semibold">{articleTitle}</div>
+                <div className="mt-4">{likesComponent}</div>
+              </div>
+            </div>
+          </div>
+        </div>
       );
     });
   }
@@ -41,23 +50,15 @@ const AllArticlesComponent = () => {
     }
   }
 
-
   return (
     <>
       <div className="container">
-        <h3 className="p-3 text-center" data-testid="CAC-ArticleNames">
+        <h3 className="p-3 ml-32 text-center" data-testid="CAC-ArticleNames">
           Articles
         </h3>
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Article name</th>
-            </tr>
-          </thead>
-          <tbody id="articleList" data-testid="CAC-ArticleList">
-            {SetArticleList()}
-          </tbody>
-        </table>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {SetArticleList()}
+        </div>
       </div>
     </>
   );

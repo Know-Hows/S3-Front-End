@@ -4,7 +4,7 @@ import AllArticlesComponent from "../components/AllArticlesComponent";
 import NavBar from "../components/NavBarComponent";
 import Sidebar from "../components/SideBarComponent";
 
-const CreateArticlePage = () => {
+const ArticlePage = () => {
     const navigate = useNavigate();
 
     function GoToHome() {
@@ -14,22 +14,18 @@ const CreateArticlePage = () => {
         navigate("/CreateArticlePage");
     }
 
-    return(
-        <>
-        <NavBar/>
-        <Sidebar />
-            <div className="btn btn-primary" onClick={GoToHome}>
-                Go home
-            </div>
-            <div className="btn btn-primary" onClick={GoToCreateArticle}>
-                Create an article
-            </div>
-
-            
-                <AllArticlesComponent></AllArticlesComponent>
-            
-        </>
-    )
+    return (
+      <>
+        <div>
+          <NavBar />
+          <div className="flex">
+            <Sidebar />
+            <AllArticlesComponent />
+          </div>
+          
+        </div>
+      </>
+    );
 }
 
-export default CreateArticlePage
+export default ArticlePage
