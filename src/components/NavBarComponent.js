@@ -79,7 +79,7 @@ const NavBar = () => {
                     />
                 </Link>
                 <Link
-                    className={`p-2 no-underline hover:underline active:underline active:border-4 flex flex-row font-extrabold text-2xl active:border-x-pink-500 ${isTransparent ? 'text-white': 'text-white'}`}
+                    className={`p-2 no-underline hover:underline active:underline flex flex-row font-extrabold text-2xl  ${isTransparent ? 'text-white': 'text-white'}`}
                     to="/"
                 >
                     Know-Hows
