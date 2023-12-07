@@ -19,7 +19,8 @@ const LikesComponent = ({ articleId }) => {
   };
 
   return (
-    <div>
+    <div className="flex justify-between">
+      <div>
       <div className="flex items-stretch">
       <button onClick={handleLikeClick}>
         <svg
@@ -53,6 +54,7 @@ const LikesComponent = ({ articleId }) => {
           />
         </svg>
       </button>
+      </div>
       </div>
       <div className="flex items-stretch">
         <svg
