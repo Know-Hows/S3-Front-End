@@ -43,6 +43,9 @@ const AllArticlesComponent = () => {
                 <div className="p-8">
                   <div className="uppercase tracking-wide text-sm text-white font-semibold">
                     {articleTitle}
+                    <br></br>
+                    <br></br>
+                    {articleBody}
                   </div>
                   <div className="mt-4">{likesComponent}</div>
                 </div>
