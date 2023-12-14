@@ -1,81 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CreateArticle, GetAllArticles } from "../services/ArticleService";
-import { createRoot } from "react-dom/client";
-import TextToLinksConverter from "./EmbedComponent";
-import LikesComponent from "./LikesComponent";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-const CreateArticleComponent = () => {
-  useEffect(() => {
-    GetAllArticleTitles();
-  }, []);
-
+const CreateArticleComponent = () => { 
 
   async function PostArticle() {
-    let articleName = document.getElementById("makearticlenames").value;
-    let articleBody = document.getElementById("makearticlebody").value;
-    if (articleName <= 0) {
-      console.log("article name can't be empty");
+    const articleNameInput = document.getElementById("makearticlenames");
+    const articleBodyInput = document.getElementById("makearticlebody");
+
+    if (!articleNameInput || !articleBodyInput) {
+      console.log("Article name or body input not found");
       return;
     }
 
-    let articlebody = {
+    const articleName = articleNameInput.value;
+    const articleBody = articleBodyInput.value;
+
+    if (articleName <= 0) {
+      console.log("Article name can't be empty");
+      return;
+    }
+
+    const articleBodyObject = {
       Title: articleName,
       Body: articleBody,
     };
+      const response = await CreateArticle(articleBodyObject);
 
-    try {
-      await CreateArticle(articlebody).then((response) => {
-        if (response.id !== null) {
-          console.log("Succesfully created a article");
-          GetAllArticleTitles();
-        } else {
-          console.log("Failed to create a game");
-        }
-      });
-    } catch (error) {}
-  }
-
-  const SetArticleList = (Articles) => {
-    const root = createRoot(document.getElementById("articleList"));
-  
-    const articleRows = Articles.map((element) => {
-      const articleTitle = element.title;
-      let articleBody = element.body;
-  
-      if (articleBody) {
-        articleBody = TextToLinksConverter(articleBody);
+      if (response.id !== null) {
+        console.log("Successfully created an article");
+      } else {
+        console.log("Failed to create an article");
       }
-  
-      const likesComponent = <LikesComponent articleId={element.id} />;
-  
-      return (
-        <tr key={element.id}>
-          <td>{articleTitle}</td>
-          <td dangerouslySetInnerHTML={{ __html: articleBody || "" }}></td>
-          <td>{likesComponent}</td>
-        </tr>
-      );
-    });
-  
-    root.render(articleRows);
-  };
-  
-  async function GetAllArticleTitles() {
-    var articleTitles = [];
-    await GetAllArticles().then((response) => {
-      articleTitles = response;
-      SetArticleList(articleTitles);
-    });
   }
+
 
   return (
     <>
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
-          Make article names
+          Enter your article name:
         </span>
         <input
           id="makearticlenames"
@@ -88,7 +52,7 @@ const CreateArticleComponent = () => {
       </div>
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
-          Make article body
+          Enter information of your article:
         </span>
         <input
           id="makearticlebody"
@@ -105,22 +69,8 @@ const CreateArticleComponent = () => {
           data-testid="CAC-MakeArticleButton"
           onClick={PostArticle}
         >
-          Make articles
+          Create your article
         </div>
-      </div>
-
-      <div className="container">
-        <h3 className="p-3 text-center" data-testid="CAC-ArticleNames">
-          Article Names
-        </h3>
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Articles</th>
-            </tr>
-          </thead>
-          <tbody id="articleList" data-testid="CAC-ArticleList"></tbody>
-        </table>
       </div>
     </>
   );
