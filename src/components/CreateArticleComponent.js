@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CreateArticle, GetAllArticles } from "../services/ArticleService";
-import TextToLinksConverter from "./EmbedComponent";
-import LikesComponent from "./LikesComponent";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap";
 import "react-toastify/dist/ReactToastify.css";
 
-const CreateArticleComponent = () => {
-  const [articleTitles, setArticleTitles] = useState([]);
-
-  useEffect(() => {
-    GetAllArticleTitles();
-  }, []);
+const CreateArticleComponent = () => { 
 
   async function PostArticle() {
     const articleNameInput = document.getElementById("makearticlenames");
@@ -38,40 +29,9 @@ const CreateArticleComponent = () => {
 
       if (response.id !== null) {
         console.log("Successfully created an article");
-        GetAllArticleTitles();
       } else {
         console.log("Failed to create an article");
       }
-  }
-
-  function SetArticleList() {
-    return articleTitles.map((element) => {
-      const articleTitle = element.title;
-      let articleBody = element.body;
-
-      if (articleBody) {
-        articleBody = TextToLinksConverter(articleBody);
-      }
-
-      const likesComponent = <LikesComponent articleId={element.id} />;
-
-      return (
-        <tr key={element.id}>
-          <td>{articleTitle}</td>
-          <td dangerouslySetInnerHTML={{ __html: articleBody || "" }}></td>
-          <td>{likesComponent}</td>
-        </tr>
-      );
-    });
-  }
-
-  async function GetAllArticleTitles() {
-    try {
-      const response = await GetAllArticles();
-      setArticleTitles(response);
-    } catch (error) {
-      console.error("Error getting article titles:", error);
-    }
   }
 
 
@@ -79,7 +39,7 @@ const CreateArticleComponent = () => {
     <>
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
-          Make article names
+          Enter your article name:
         </span>
         <input
           id="makearticlenames"
@@ -92,7 +52,7 @@ const CreateArticleComponent = () => {
       </div>
       <div className="input-group mb-3">
         <span className="input-group-text" id="inputGroup-sizing-default">
-          Make article body
+          Enter information of your article:
         </span>
         <input
           id="makearticlebody"
@@ -109,24 +69,8 @@ const CreateArticleComponent = () => {
           data-testid="CAC-MakeArticleButton"
           onClick={PostArticle}
         >
-          Make articles
+          Create your article
         </div>
-      </div>
-
-      <div className="container">
-        <h3 className="p-3 text-center" data-testid="CAC-ArticleNames">
-          Article Names
-        </h3>
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr>
-              <th>Articles</th>
-            </tr>
-          </thead>
-          <tbody id="articleList" data-testid="CAC-ArticleList">
-            {SetArticleList()}
-          </tbody>
-        </table>
       </div>
     </>
   );
